@@ -8,6 +8,8 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import java.lang.reflect.Field;
 import java.util.Comparator;
+import java.util.Random;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -24,9 +26,12 @@ class MyArrayTest {
 
     @Test
     void addOneObject() {
-        Integer testObject = 1000;
-        testArray.add(testObject);
-        assertThat(testArray.get(testArray.size() - 1)).isEqualTo(testObject);
+        for (int i = 0; i < 10; i++) {
+            Integer testObject = new Random().nextInt();
+            testArray.add(testObject);
+            assertThat(testArray.get(testArray.size() - 1)).isEqualTo(testObject);
+        }
+
     }
 
     @Test
@@ -46,16 +51,32 @@ class MyArrayTest {
 
     @Test
     void addObjectByIndex() {
-        Integer testObject = 123456;
-        testArray.add(1, testObject);
-        assertThat(testArray.get(1)).isEqualTo(testObject);
+        for (int i = 0; i < 10; i++) {
+            Integer testObject = new Random().nextInt();
+            testArray.add(i, testObject);
+            assertThat(testArray.get(i)).isEqualTo(testObject);
+        }
+
+    }
+
+    @Test
+    void setObject() {
+        for (int i = 0; i < testArray.size(); i++) {
+            Integer testObject = new Random().nextInt();
+            Object objectFromArray = testArray.get(i);
+            testArray.set(i, testObject);
+            Object actualObject = testArray.get(i);
+            assertThat(actualObject).isEqualTo(testObject);
+            assertThat(actualObject).isNotEqualTo(objectFromArray);
+        }
+
     }
 
     @Test
     void get() {
-        Integer testObject = 123456;
-        testArray.add(testObject);
-        assertThat(testArray.get(testArray.size() - 1)).isEqualTo(testObject);
+        for (int i = 0; i < testArray.size(); i++) {
+            assertThat(testArray.get(i)).isNotNull();
+        }
     }
 
     @Test

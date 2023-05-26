@@ -72,6 +72,16 @@ public class MyArray<T> {
     }
 
     /**
+     * Method set replaces object with index position
+     * to given object
+     * @param index - in which position object will be repalced.
+     * @param object - given object.
+     */
+    public void set(int index, T object) {
+        elementData[index] = object;
+    }
+
+    /**
      * Method return object, witch is saved in position with given index
      *
      * @param index - position of needed object
@@ -130,7 +140,7 @@ public class MyArray<T> {
      * Private method, which implements quick sort from book "Grokking Algorithms"
      * with recursion.
      *
-     * @param objects - array of paramethrized objects
+     * @param objects    - array of paramethrized objects
      * @param comparator - how to compare given objects
      * @return - sorted array of given objects.
      */
